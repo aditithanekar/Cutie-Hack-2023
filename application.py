@@ -9,7 +9,7 @@ import openai
 import AI as AI
 
 # Set your OpenAI API key
-openai.api_key = "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"
+openai.api_key = "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"
 
 def main(page):
     page.scroll = True
@@ -22,7 +22,7 @@ def main(page):
         input_text = str(text_input.value)
         output = AI.answer_Generator(input_text)
 
-        clear_button = ft.FloatingActionButton("Clear Previous", height=60, on_click=clear)
+        clear_button = ft.FloatingActionButton("Clear", height=60, on_click=clear)
         page.add(clear_button)
         page.add(ft.Container(ft.Text(value=text_input.value), bgcolor=ft.colors.GREEN, padding=10))
         page.add(ft.Container(ft.Text(value=output, selectable=True), padding=10))
@@ -52,5 +52,3 @@ def main(page):
             page.update()
 
 ft.app(target=main)
-
-
