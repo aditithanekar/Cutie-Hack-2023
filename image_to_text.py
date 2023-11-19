@@ -1,7 +1,6 @@
 from PIL import Image
 import pytesseract
 import pyperclip
-
 def image_to_text(image_path):
     # Open the image file
     img = Image.open(image_path)
@@ -37,4 +36,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-# use this to check: /Users/keerthi/Desktop/trydiv.png  or /Users/keerthi/Desktop/wp2.png
+#use this to check: /Users/keerthi/Desktop/trydiv.png  or /Users/keerthi/Desktop/wp2.png
+
+
+
