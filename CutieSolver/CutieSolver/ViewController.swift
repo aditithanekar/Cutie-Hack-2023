@@ -72,6 +72,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
     }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Check if the selected media type is an image
+        if let mediaType = info[.mediaType] as? String, mediaType == "public.image" {
+            if let selectedImage = info[.originalImage] as? UIImage {
+                // Handle the selected image here
+                print("Selected image: \(selectedImage)")
+                
+                // Access other image information
+                if let imageUrl = info[.imageURL] as? URL {
+                    // Image URL: prints out the filepath of the image
+                    print("Image URL: \(imageUrl)")
+                }
+
+            }
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+
 
 }
 
