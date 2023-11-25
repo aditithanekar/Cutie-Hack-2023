@@ -37,12 +37,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         ///
-        // Set up image picker controller
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false // Set to true if you want to allow editing
-        self.imagePicker=imagePicker // store it to the variable declared at the very top
-                
+         
         
     }
     override func viewDidLayoutSubviews() {
@@ -56,7 +51,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @objc func addPhotoButtonPressed()
     {
         print("take photo click!")
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            // Camera is not available on this device
+            return
+        }
         
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = false
+        
+        present(imagePicker, animated: true, completion: nil)
+    
     }
     @objc func selectPhotoFromLibraryPressed()
     {
@@ -65,12 +71,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             // Photo library is not available
             return
         }
-                
-        // Set the source type to photo library
+        // Set up image picker controller
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false // Set to true if you want to allow editing
+        self.imagePicker=imagePicker // store it to the variable declared at the very top
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
-        
-        
+    
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Check if the selected media type is an image
@@ -90,6 +98,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         picker.dismiss(animated: true, completion: nil)
     }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true, completion: nil)
+        }
 
 
 }
